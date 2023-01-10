@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <style>
+            table, td, th {
+              border: 1px solid black;
+            }
+
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            td {
+              text-align: center;
+            }
+            </style>
+    </head>
+    <body>
+     <table cellpadding="0" cellspacing="" width="100%">
+        <tr>
+            <td colspan="2">
+                </br>
+                <label style="white-space: pre;margin:3;padding:0; text-align: center; align : left;
+    font-size: 2.5em;
+    color:red;"> M/s. Jaulkar Explosives</label></br>
+              </br>  <label style="white-space: pre;margin:3;padding:0; text-align: center; align : left;
+    font-size: 1.8em;
+    color:black;">         DRILLING & BLASTING CONTRACTOR</label>
+
+                </br>  <label style="white-space: pre;margin:2;padding:0; text-align: center; align : left;
+    font-size: 1.0em;
+    color:black;">         Main Road Narkhed - 441304</label>
+
+
+
+            </td>
+        </tr>
+     </table>
+         </br>
+    <table class="table table-bordered table-hover table-warning" id="invoice-list">
+         <colgroup>
+            <col width="5%">
+             <col width="10%">
+            <col width="20%">
+            <col width="20%">
+            <col width="15%">
+             <col width="15%">
+            <col width="15%">
+
+        </colgroup>
+        <thead>
+            <tr class="bg-gradient bg-primary bg-opacity-50 text-light">
+
+                 <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Sr.No.</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Invoice Id</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Customer Name</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Date Created</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Total </th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Deposite</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Balance</th>
+            </tr>
+
+        </thead>
+        <tbody>
+             {% for result in invoices %}
+            <tr  style="white-space: pre;display: block;color:black;">
+                <td width="5%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{ forloop.counter }}</h2></td>
+                <td width="20%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{result.5}}</h2></td>
+                <td width="20%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{result.0}}</h2></td>
+                <td width="20%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{result.1}}</h2></td>
+                <td width="20%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{result.2}}</h2></td>
+                <td width="20%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{result.3}}</h2></td>
+                <td width="15%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{result.4}}</h2></td>
+            </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="6"></td>
+            </tr>
+        <tr style="white-space: pre;display: block;color:black;">
+
+            <td width="33%" colspan="3" style="border: 1px solid yellow;padding-top: 3px;padding-bottom: 3px;padding : 3px; font-size:15px" class="px-2 py-2 text-center"><b>Total Amount :-  {{ totalamt }} </b></td>
+
+
+            <td width="33%" colspan="2" style="border: 1px solid yellow;padding-top: 3px;padding-bottom: 3px;padding : 3px; font-size:15px" class="px-2 py-2 text-center" ><b>Total Deposite :-  {{ totaldepositamt }}</b></td>
+            <td width="33%" colspan="2" style="border: 1px solid yellow;padding-top: 3px;padding-bottom: 3px;padding : 3px; font-size:15px" class="px-2 py-2 text-center" ><b> Total Balance :-  {{ totalbalanceamt }}</b></td>
+        </tr>
+
+        </tbody>
+    </table>
+    </body>
+</html>

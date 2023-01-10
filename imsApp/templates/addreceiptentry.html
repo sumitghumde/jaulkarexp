@@ -1,0 +1,76 @@
+
+{% extends 'base.html' %} {% load humanize %} {% block pageContent %}
+<div class="container pt-3">
+    <div class="card card-default border shadow rounded-0">
+        <div class="card-header">
+            <div class="w-100 d-flex justify-content-between">
+                <h5 class="fw-bolder card-title">Sales Transaction</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="conteiner-fluid">
+                <form action=" /insertreceipt/" method="post" id="sale-form">
+                    {% csrf_token %}
+<!--                    <input type="hidden" name="id" value="1">-->
+
+                    <div class="row">
+                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div class="from-group">
+                                     <label for="customer" class="control-label"><b>Customer</b></label>
+                                        <input  type="text" name="customer" id="customer" value="{{ customers }}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div class="from-group">
+                                     <label for="invoice" class="control-label"><b>Site</b></label>
+                                        <input type="text" name="invoice" id="invoice" value="{{ invoices }}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div class="from-group">
+                                    <label for="total" class="control-label"><b>Total</b></label>
+                                        <input type="text" name="total" id="total" value="{{ totals }}" readonly>
+                                </div>
+                            </div>
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="from-group">
+                                <label for="balance" class="control-label"><b>Balance</b></label>
+                                        <input type="text" name="balance" id="balance" value="{{ balances }}" readonly>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+                     <div class="row">
+                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="from-group">
+                                    <label for="deposit" class="control-label"><b>Deposite</b></label>
+                                        <input style="font-weight: bold;"  type="number" name="deposit" id="deposit" onkeyup="return checkPrice()">
+                                </div>
+                            </div>
+
+                    </div>
+                    <hr>
+                </form>
+            </div>
+        </div>
+        <div class="card-footer py-1 text-end">
+            <button class="btn btn-primary bg-gradient px-3 rounded-0" form="sale-form"><i class="fa fa-save"></i> Save</button>
+        </div>
+    </div>
+</div> {% endblock pageContent %}  {% block ScriptBlock %}
+
+<script>
+function checkPrice(){
+        var balanceval =  parseFloat(document.getElementById('balance').value);
+        var depositval =  parseFloat(document.getElementById('deposit').value);
+        if(depositval > balanceval){
+             document.getElementById('deposit').value=0;
+             alert("entered deposit value is bigger than the balance");
+             return false;
+           }
+         }
+</script>
+{% endblock ScriptBlock %}

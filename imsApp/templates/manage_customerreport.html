@@ -1,0 +1,39 @@
+{% load customfilter %}
+<div class="container-fluid">
+    <form action="/datewisecustomerinvoice/" method="POST" id="customer-form">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+        <input type="hidden" name="custid" value="{{ customerid }}">
+        From:<input type="date" name="fromdate" required>
+        To:  <input type="date" name="todate" required>
+              <hr>
+            </td>
+            </tr>
+            <tr align="center"><td>
+        <button type="submit" class="btn btn-sm btn-flat btn-light border rounded-0" data-bs-dismiss="modal">Print</button>
+        <button type="button" class="btn btn-sm btn-flat btn-light border rounded-0" data-bs-dismiss="modal">Cancel</button>
+    </td></tr>
+        </table>
+    </form>
+</div>
+<script>
+    $(function() {
+        $('#customer-form').submit(function(e) {
+
+            start_loader();
+            $.ajax({
+                url: "{% url 'datewisecustomerinvoice' %}",
+                data: new FormData($(this)[0]),
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST',
+                dataType: 'json',
+
+            })
+        })
+    })
+</script>

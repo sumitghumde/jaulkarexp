@@ -1,0 +1,43 @@
+<html>
+<body>
+<head>
+<script>
+<!--    var data = JSON.parse("{{json_object|safe}}".replaceAll("'", '"'));-->
+  var mydata =  "{{ json_object | safe }}";
+  console.log(mydata);
+</script>
+
+</head>
+<div class="container pt-3">
+    <div class="card card-default border shadow rounded-0">
+        <div class="card-header">
+            <div class="w-100 d-flex justify-content-between">
+                <h5 class="fw-bolder card-title">Sales Transaction</h5>
+            </div>
+        </div>
+            <div class="from-group">
+                <label for="helper" class="control-label">Helper</label>
+                <select name="helper" id="helper" class="form-select rounded-0">
+                {% for helper in helpers %}
+                    {% for help in helper %}
+                        <option value="{{helper.id}}" >{{help.helpername}}</option>
+                    {% endfor %}
+                {% endfor %}
+                </select>
+            </div>
+        <div class="card-footer py-1 text-end">
+            <button class="btn btn-primary bg-gradient px-3 rounded-0" form="sale-form"><i class="fa fa-save"></i> Save</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

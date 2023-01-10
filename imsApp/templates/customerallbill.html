@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% load humanize %} {% block pageContent %}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card card-default rounded-0 shadow ">
+        <div class="card-header">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <h4 class="card-title fw-bold">Customers</h4>
+<!--                <div class="tools">-->
+<!--                    <button type="button" class="btn btn-primary rounded-0 bg-gradient btn-sm" id='add_new'><i class="fa fa-plus"></i> Add New</button>-->
+<!--                </div>-->
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <table class="table table-bordered" id="customer-list">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="25%">
+                        <col width="10%">
+                        <col width="8%">
+                        <col width="8%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="4%">
+
+                    </colgroup>
+                    <thead>
+                        <tr class="bg-gradient bg-primary bg-opacity-50 text-light">
+                             <th class="px-2 py-2 text-center" align="center">Sr.No.</th>
+                            <th class="px-2 py-2 text-center" align="center">Date</th>
+                            <th class="px-2 py-2 text-center" align="center">Customer Name</th>
+                            <th class="px-2 py-2 text-center" align="center">Site</th>
+                            <th class="px-2 py-2 text-center" align="center">Hole 2.5</th>
+                            <th class="px-2 py-2 text-center" align="center">Hole 5</th>
+                            <th class="px-2 py-2 text-center" align="center">Total</th>
+                             <th class="px-2 py-2 text-center" align="center">Receipt</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr>
+                            <td class="px-2 py-1 align-middle text-center"><h2>{{ forloop.counter }}</h2></td>
+                            <td class="px-2 py-1 align-middle"><h2>{{customer.0}}</h2></td>
+                            <td class="px-2 py-1 align-middle"><h2>{{customer.2}}</h2></td>
+                            <td class="px-2 py-1 align-middle"><h2>{{customer.9}}</h2></td>
+                            <td class="px-2 py-1 align-middle"><h2>{{customer.3}}</h2></td>
+                            <td class="px-2 py-1 align-middle"><h2>{{customer.4}}</h2></td>
+                            <td class="px-2 py-1 align-middle"><h2>{{customer.6}}</h2></td>
+<!--                            <td class="px-2 py-1 align-middle"><h2>{{customer.7}}</h2></td>-->
+<!--                            <td class="px-2 py-1 align-middle"><h2>{{customer.8}}</h2></td>-->
+                             <td class="px-2 py-1 align-middle text-center">
+                                 <a href="/customerreceipt/{{ customer.10}}/{{customer.11}}" target="_blank"> <i class="fa fa-print" ></i></a>
+                             </td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock pageContent %}
+

@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% load humanize %} {% load customfilter %} {% block pageContent %}
+
+<!--Section: Content-->
+<section class="">
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="card rounded-0 shadow border-primary text-start summary-card my-3">
+                <div class="card-body">
+                    <div class="d-flex w-100">
+                        <div class="col-8 pe-2">
+                            <a class="summary-title fs-5 border-bottom"  type="button" href="{% url 'driverspdf' %}">Driver</a>
+<!--                            <a href="{% url 'driverspdf' %}"></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card rounded-0 shadow border-primary text-start summary-card my-3">
+                <div class="card-body">
+                    <div class="d-flex w-100">
+                        <div class="col-8 pe-2">
+                            <a class="summary-title fs-5 border-bottom"  type="button" href="{% url 'tractorspdf' %}">Tractor</a>
+<!--                            <a href="{% url 'driverspdf' %}"></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card rounded-0 shadow border-primary text-start summary-card my-3">
+                <div class="card-body">
+                    <div class="d-flex w-100">
+                        <div class="col-8 pe-2">
+                            <a class="summary-title fs-5 border-bottom"  type="button" href="{% url 'invoicespdf' %}">Invoice</a>
+<!--                            <a href="{% url 'driverspdf' %}"></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card rounded-0 shadow border-primary text-start summary-card my-3">
+                <div class="card-body">
+                    <div class="d-flex w-100">
+                        <div class="col-8 pe-2">
+                            <a class="summary-title fs-5 border-bottom"  type="button" href="{% url 'helperspdf' %}">Helper</a>
+<!--                            <a href="{% url 'driverspdf' %}"></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card rounded-0 shadow border-primary text-start summary-card my-3">
+                <div class="card-body">
+                    <div class="d-flex w-100">
+                        <div class="col-8 pe-2">
+                            <a class="summary-title fs-5 border-bottom"  type="button" href="{% url 'customerspdf' %}">Customer</a>
+<!--                            <a href="{% url 'driverspdf' %}"></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+</section>
+
+
+</div> {% endblock pageContent %} 

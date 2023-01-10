@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/ims_django_new_december/Sumit Sir 02-12-2022/ayush latest ims(01.12.22)/ayush latest/ims_django/db.sqlite3" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="3562"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,21:mainimsApp_receiptinvoice"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="auth_group" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="43"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="imsApp_invoice_item" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="51"/><column index="3" value="43"/><column index="4" value="46"/><column index="5" value="60"/><column index="6" value="63"/><column index="7" value="88"/><column index="8" value="72"/><column index="9" value="60"/><column index="10" value="51"/><column index="11" value="60"/></column_widths><filter_values><column index="7" value="9"/><column index="10" value="7"/></filter_values><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="imsApp_receiptinvoice" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="53"/><column index="3" value="56"/><column index="4" value="58"/><column index="5" value="97"/><column index="7" value="88"/><column index="8" value="72"/><column index="9" value="51"/></column_widths><filter_values><column index="7" value="9"/><column index="9" value="6"/></filter_values><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="imsApp_site" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="67"/><column index="3" value="80"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">-- SELECT inv.id,sitename,drv.name,hlp.helpername,cust.name,inv.ed,inv.gl,inv.nonel,strftime('%d/%m/%Y',DATE(inv.date_created)) as date_created,inv.diesel,
+-- invitem.hole25,invitem.hole5,invitem.price, ((invitem.hole25+(invitem.hole5 *2))*invitem.price) as total,invitem.balance as balance,invitem.quantity
+-- FROM imsApp_invoice as inv
+-- JOIN imsApp_driver as drv
+--   ON inv.driver_id = drv.id
+-- JOIN imsApp_helper as hlp
+--   ON inv.helper_id = hlp.id
+--   JOIN imsApp_invoice_item as invitem
+--   ON inv.id = invitem.invoice_id 
+--   JOIN imsApp_customer as cust
+--   ON cust.id = invitem.customer_id 
+--   JOIN imsApp_site as sit
+--   ON sit.id = invitem.site_id 
+--   JOIN imsApp_receiptinvoice as rec 
+--   ON invitem.invoice_id = rec.invoice_id
+--   where inv.id = 148
+--   group by  cust.id,invitem.invoice_id;
+-- 
+--   SELECT cust.name, strftime('%d/%m/%Y',DATE(recpt.date_created)) as date_created,recpt.total,recpt.deposit,recpt.balance
+--       FROM imsApp_receiptinvoice as recpt
+--     JOIN imsApp_customer as cust
+--     ON cust.id = recpt.customer_id	 
+--     where recpt.customer_id =5
+--   
+--   
+--    SELECT cust.name, strftime('%d/%m/%Y',DATE(recpt.date_created)) as date_created,recpt.total,recpt.deposit,
+-- recpt.balance
+--       FROM imsApp_receiptinvoice as recpt
+--     JOIN imsApp_customer as cust
+--     ON cust.id = recpt.customer_id
+--     where recpt.customer_id = 2 and recpt.date_created between '2022-12-01' and '2022-12-30' ;
+--   Select sum(invitem.total) as total from imsApp_invoice_item as invitem
+--   where invitem.customer_id = 5 ;
+--   
+-- 		SELECT sum(recpt.deposit),
+-- 		sum(recpt.balance)
+-- 		FROM imsApp_receiptinvoice as recpt
+-- 		JOIN imsApp_customer as cust
+-- 		ON cust.id = recpt.customer_id
+-- 		where recpt.customer_id = 5 and recpt.date_created between '2022-12-01' and '2022-12-30' ;
+-- 
+--   SELECT inv.invoice_id,recpt.date_created,recpt.total,recpt.deposit,recpt.balance
+--       FROM imsApp_invoice_item as inv
+-- 	  JOIN imsApp_receiptinvoice as recpt   
+--     ON inv.invoice_id = recpt.invoice_id
+-- --     JOIN imsApp_customer as cust
+-- --     ON cust.id = recpt.customer_id	 
+--     where recpt.customer_id =5
+--   select sum(total) from imsApp_invoice_item where customer_id=5
+--   
+-- 
+-- 
+--   SELECT *
+-- FROM imsApp_invoice
+-- JOIN imsApp_driver
+--   ON imsApp_invoice.driver_id = imsApp_driver.id
+-- JOIN imsApp_helper
+--   ON imsApp_invoice.helper_id = imsApp_helper.id;
+
+-- 
+-- SELECT sum(recpt.deposit),
+--                 sum(recpt.balance)
+--                 FROM imsApp_receiptinvoice as recpt
+--                 JOIN imsApp_customer as cust
+--                 ON cust.id = recpt.customer_id
+--                 where recpt.customer_id = 2 and recpt.date_created between '2022-12-01' and '2022-12-31'
+-- 				
+-- 				
+-- 				
+-- 				
+-- 				SELECT cust.name, strftime('%d/%m/%Y',DATE(recpt.date_created)) as date_created,recpt
+-- .total,recpt.deposit,recpt.balance
+--       FROM imsApp_receiptinvoice as recpt
+--     JOIN imsApp_customer as cust
+--     ON cust.id = recpt.customer_id
+--     where recpt.customer_id = 2 and recpt.date_created between '2022-12-01' and '2022-12-31' ;
+
+-- 
+-- SELECT drv.name, sum(gl) as gelleting ,sum(ed) as Detonetor,sum(nonel) as nonel, sum(diesel) as diesel 
+-- FROM imsApp_invoice as inv
+-- JOIN imsApp_driver as drv
+-- on inv.driver_id= drv.id WHERE driver_id = 1 and inv.date_created between '2022-12-05' and '2022-12-05' 
+
+
+-- SELECT sum(invitem.total) as total
+--       FROM imsApp_invoice as inv
+--     JOIN imsApp_invoice_item as invitem
+--     ON inv.id = invitem.invoice_id
+--     JOIN imsApp_customer as cust
+--     ON cust.id = invitem.customer_id
+-- 	JOIN imsApp_receiptinvoice as recpt 
+-- 	ON recpt.invoice_id = inv.id
+--     where cust.id =2 and inv.date_created between '2022-12-01' and '2022-12-31' 
+
+-- 
+-- SELECT sum(recpt.deposit)
+--                 FROM imsApp_receiptinvoice as recpt
+--                 JOIN imsApp_customer as cust
+--                 ON cust.id = recpt.customer_id
+--                 where recpt.customer_id = 5 and recpt.date_created between '2022-12-01' and '2022-12-31' ;
+
+
+-- SELECT cust.name, strftime('%d/%m/%Y',DATE(recpt.date_created)) as date_created,recpt.total,recpt.deposit,recpt.balance,recpt.invoice_id
+--       FROM imsApp_receiptinvoice as recpt
+--     JOIN imsApp_customer as cust
+--     ON cust.id = recpt.customer_id
+
+-- SELECT strftime('%d/%m/%Y',DATE(inv.date_created)) as date_created,inv.id as Invoice_Id,cust.name,
+--     sum(invitem.hole25) as hole25,sum(invitem.hole5) as hole5,invitem.price, sum(invitem.total) as total, invitem.quantity,cust.id as custid,site.sitename
+--     FROM imsApp_invoice as inv
+--   JOIN imsApp_invoice_item as invitem
+--   ON inv.id = invitem.invoice_id
+--   JOIN imsApp_customer as cust
+--   ON cust.id = invitem.customer_id
+--   JOIN imsApp_site as site
+--   ON site.id = invitem.site_id
+--  
+--   where invitem.customer_id =5 
+--   GROUP BY invitem.site_id
+--   
+--   select site_id from imsApp_receiptinvoice
+--   
+--  DROP TABLE imsApp_receiptinvoice ;
+ 
+--  CREATE TABLE &quot;imsApp_receiptinvoice&quot; (&quot;id&quot; integer NOT NULL PRIMARY KEY AUTOINCREMENT, &quot;total&quot; real NOT NULL, &quot;deposit&quot; real NOT NULL, &quot;balance&quot; real NOT NULL, &quot;date_created&quot; date NOT NULL, &quot;date_updated&quot; date NOT NULL, &quot;customer_id&quot; integer NOT NULL REFERENCES &quot;imsApp_customer&quot; (&quot;id&quot;) DEFERRABLE INITIALLY DEFERRED, &quot;invoice_id&quot; bigint NOT NULL REFERENCES &quot;imsApp_invoice&quot; (&quot;id&quot;) DEFERRABLE INITIALLY DEFERRED, &quot;site_id&quot; integer NOT NULL REFERENCES &quot;imsApp_site&quot; (&quot;id&quot;) DEFERRABLE INITIALLY DEFERRED)
+-- 
+-- SELECT strftime('%d/%m/%Y',DATE(inv.date_created)) as date_created,inv.id as Invoice_Id,cust.name,
+--     sum(invitem.hole25) as hole25,sum(invitem.hole5) as hole5,invitem.price, sum(invitem.total) as total, invitem.quantity,cust.id as custid,site.sitename,site.id,cust.id
+--     FROM imsApp_invoice as inv
+--   JOIN imsApp_invoice_item as invitem
+--   ON inv.id = invitem.invoice_id
+--   JOIN imsApp_customer as cust
+--   ON cust.id = invitem.customer_id
+--   JOIN imsApp_site as site
+--   ON site.id = invitem.site_id
+--   where cust.id  = 5 GROUP BY invitem.site_id ;
+-- SELECT id from imsApp_customer where name = 'harshal nanoti';
+
+SELECT sum(invitem.total), sum(recpt.deposit)
+      FROM imsApp_invoice_item as invitem
+    JOIN imsApp_receiptinvoice as recpt
+    ON invitem.site_id = recpt.site_id	
+    JOIN imsApp_customer as cust
+    ON cust.id = recpt.customer_id
+	JOIN imsApp_site as site
+    ON site.id = recpt.site_id
+	where cust.id = 9 and site.id = 6
+	 GROUP BY invitem.site_id ;</sql><current_tab id="0"/></tab_sql></sqlb_project>

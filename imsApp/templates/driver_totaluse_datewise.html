@@ -1,0 +1,91 @@
+<html>
+    <head>
+            <style>
+            table, td, th {
+              border: 1px solid black;
+            }
+
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            td {
+              text-align: center;
+            }
+            </style>
+    </head>
+    <body>
+<form>
+     <table cellpadding="0" cellspacing="" width="100%">
+        <tr>
+            <td colspan="2">
+                </br>
+                <label style="white-space: pre;margin:3;padding:0; text-align: center; align : left;
+    font-size: 2.5em;
+    color:red;"> Jaulkar Explosive and Company</label></br>
+              </br>  <label style="white-space: pre;margin:3;padding:0; text-align: center; align : left;
+    font-size: 1.5em;
+    color:black;">         Railway Station Narkhed - 441304</label>
+
+            </td>
+        </tr>
+        <tr style='white-space: pre;color:red;font-family:"verdana", Courier, monospace; font-size:100%;'>
+            <td>
+                <h3 style="margin:0;padding:0; text-align: left;
+    font-size: 1.5em;
+    color:black;">
+
+                    Driver :- {{driver}}
+
+                </h3>
+            </td>
+            <td>
+                <h3 style="margin:0;padding:0; text-align: left;
+    font-size: 1.5em;
+    color:black;">
+                    From Date    :- {{fromdate}}
+                    To Date    :- {{todate}}
+
+                </h3>
+            </td>
+        </tr>
+<!--         <tr>-->
+
+<!--            <td colspan="2"> <br><h2  align="center" style="color:black;font-size:20px;"><u>Driver Report</u></h2>-->
+<!--            </td>-->
+<!--        </tr>-->
+    </table>
+    </br>
+        <div class="card-body">
+            <div class="container-fluid">
+                <table border="1" id="driver-list">
+
+                    <thead>
+                        <tr class="bg-gradient bg-primary bg-opacity-50 text-light">
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px; ">Sr.No.</th>
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px;">Gelleting</th>
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px;">Detonators</th>
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px;">Nonel</th>
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px;">Diesel</th>
+<!--                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;">Phone No.</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for invoice in invoices %}
+                        <tr>
+                            <td  align="center" style="color:black;font-size:18px; padding-top: 8px;">{{ forloop.counter }}</td>
+                            <td  align="center" style="color:black;font-size:18px;padding-top: 8px;" >{{ invoice.1 }}</td>
+                            <td  align="center" style="color:black;font-size:18px;padding-top: 8px;" >{{ invoice.2 }}</td>
+                            <td  align="center" style="color:black;font-size:18px;padding-top: 8px;" >{{ invoice.3 }}</td>
+                            <td  align="center" style="color:black;font-size:18px;padding-top: 8px;" >{{ invoice.4 }}</td>
+<!--                            <td  align="center" style="color:black;font-size:18px;">{{ driver.2 }}</td>-->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</form>
+    </body>
+</html>

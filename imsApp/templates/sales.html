@@ -1,0 +1,424 @@
+
+{% extends 'base.html' %} {% load humanize %} {% block pageContent %}
+<div class="container pt-3">
+    <div class="card card-default border shadow rounded-0">
+        <div class="card-header">
+            <div class="w-100 d-flex justify-content-between">
+                <h5 class="fw-bolder card-title">Sales Transaction</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="conteiner-fluid">
+                <form action="" id="sale-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="transaction" value="1">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="from-group">
+                                 <label for="tractor" class="control-label">Tractor</label>
+                                <select name="tractor" id="tractor" class="form-select rounded-0">
+                                    {% for tractor in tractors %}
+                                    <option value="{{tractor.id}}" >{{tractor.tractorno}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="from-group">
+                                 <label for="driver" class="control-label">Driver</label>
+                                <select name="driver" id="driver" class="form-select rounded-0">
+                                    {% for driver in drivers %}
+                                    <option value="{{driver.id}}" >{{driver.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="from-group">
+                                <label for="helper" class="control-label">Driller</label>
+                                <select name="helper" id="helper" class="form-select rounded-0">
+                                    {% for helper in helpers %}
+                                    <option value="{{helper.id}}" >{{helper.helpername}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="from-group">
+                                 <label  class="control-label">Diesel</label>
+                                <input type="number" min="0" name="diesel" value="0" class="form-control rounded-0  text-center input-diesel">
+                            </div>
+                        </div>
+
+                    </div>
+                     <div class="row">
+                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div class="from-group">
+
+
+                                    <label  class="control-label">ED</label>
+                                     <input type="number" min="0" max="{{totaleds}}" name="ed" value="0" class="form-control rounded-0  text-center input-ed">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div class="from-group">
+                                    <label  class="control-label">GL</label>
+                                     <input type="number" min="0" max="{{ totalgls }}" name="gl" value="0" class="form-control rounded-0  text-center input-gl">
+                                </div>
+                            </div>
+                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div class="from-group">
+                                    <label  class="control-label">NON EL</label>
+                                     <input type="number" min="0" max="{{totalnonels}}" name="nonel" value="0" class="form-control rounded-0  text-center input-nonel">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <div class="from-group">
+                                    <label  class="control-label">DF</label>
+                                     <input type="number" min="0" max="{{totaldf}}" name="df" value="0" class="form-control rounded-0  text-center input-df">
+                                </div>
+                            </div>
+                    </div>
+                    <hr>
+                    <fieldset>
+                        <legend>Items</legend>
+                        <div class="row align-items-end">
+                            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
+                                <div class="from-group">
+                                    <label for="cid" class="control-label">Customer</label>
+                                    <select type="text" id="cid" class="form-control rounded-0">
+                                        <option value="" selected="selected" disabled="disabled"></option>
+                                        {% for customer in customers %}
+                                            <option value="{{ customer.pk }}">{{ customer }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
+                                <div class="from-group">
+                                    <label for="sid" class="control-label">Site</label>
+                                    <select type="text" id="sid" class="form-control rounded-0">
+                                        <option value="" selected="selected" disabled="disabled"></option>
+                                        {% for site in sites %}
+                                            <option value="{{ site.pk }}">{{ site.sitename }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                <button class="btn btn-sm btn-light border bg-gradient rounded-0 shadow-0" id="add_to_list" type="button"><i class="fa fa-plus"></i> Add to List</button>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <table class="table table-bordered" id="customer-tbl">
+                            <colgroup>
+                                <col width="5%">
+                                <col width="10%">
+                                <col width="10%">
+                                <col width="10%">
+                                <col width="6%">
+                                <col width="6%">
+                                <col width="6%">
+                                <col width="10%">
+                                <col width="6%">
+                                <col width="10%">
+                                <col width="5%">
+
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th class="text-center px-2 py-1"></th>
+                                    <th class="text-center px-2 py-1">Customer</th>
+                                    <th class="text-center px-2 py-1">Site</th>
+                                    <th class="text-center px-2 py-1">Rate</th>
+                                    <th class="text-center px-2 py-1">Hole 2.5</th>
+                                    <th class="text-center px-2 py-1">Hole5</th>
+                                    <th class="text-center px-2 py-1">Thussi</th>
+                                    <th class="text-center px-2 py-1">Deposit</th>
+                                    <th class="text-center px-2 py-1">Balance</th>
+                                    <th class="text-center px-2 py-1">Product Total</th>
+                                    <th class="text-center px-2 py-1">Price Total</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+
+                            <tfoot>
+                                <th colspan="9" class="text-center"><b>Total</b></th>
+                                <th class="text-center">
+                                    <input type="hidden" name="total" value="0">
+                                    <span class="fw-bold" id="total">0.00</span>
+                                </th>
+                            </tfoot>
+                        </table>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="card-footer py-1 text-end">
+            <button class="btn btn-primary bg-gradient px-3 rounded-0" form="sale-form"><i class="fa fa-save"></i> Save</button>
+        </div>
+    </div>
+</div>
+<noscript id="prod-item-clone">
+    <tr class="item">
+        <td class="align-middle text-center px-2 py-1">
+            <input type="hidden" name="cid[]" values="">
+            <input type="hidden" name="sid[]" values="">
+            <button class="btn btn-outline-danger btn-sm rem-item" type="button"><i class="fa fa-times"></i></button>
+        </td>
+        <td class="align-middle px-2 py-1 customer_name"></td>
+        <td class="align-middle px-2 py-1 site_name"></td>
+        <td class="align-middle text-center px-2 py-1"><input type="number" min="0" name="amount[]" value="0" class="form-control rounded-0  text-center input-amount"></td>
+        <td class="align-middle text-center px-2 py-1"><input type="number" min="0" name="hole25[]" value="0" class="form-control rounded-0  text-center input-hole25" ></td>
+        <td class="align-middle text-center px-2 py-1"><input type="number" min="0" name="hole5[]" value="0" class="form-control rounded-0  text-center input-hole5" ></td>
+        <td class="align-middle text-center px-2 py-1"><input type="number" min="0" name="thussi[]" value="0" class="form-control rounded-0  text-center input-thussi" ></td>
+        <td class="align-middle text-center px-2 py-1"><input type="number" min="0" name="deposit[]" value="0" class="form-control rounded-0  text-center input-deposit" ></td>
+<!--        <td class="align-middle text-center px-2 py-1" type="number" min="0" name="balance[]" value="" class="form-control rounded-0  text-center input-balance" ></td>-->
+
+        <td class="align-middle text-center px-2 py-1 balance "></td>
+        <td class="align-middle text-center px-2 py-1 product_total"></td>
+        <td class="align-middle text-center px-2 py-1 product_price"></td>
+
+    </tr>
+</noscript> {% endblock pageContent %} {% block ScriptBlock %}
+<script>
+    function calc() {
+                    var gtotal = 0
+                    $('#customer-tbl tbody tr').each(function() {
+                    var quantity25 = $(this).find('.input-hole25').val()
+                    quantity25 = quantity25 > 0 ? quantity25 : 0
+
+                    var quantity5 = $(this).find('.input-hole5').val()
+                    quantity5 = quantity5 > 0 ? quantity5 : 0
+                    var quantitythussi = $(this).find('.input-thussi').val()
+                    quantitythussi = quantitythussi > 0 ? quantitythussi : 0
+
+                    var quantity = (parseInt(quantitythussi) + parseInt(quantity25) + (parseInt(quantity5) * 2) )
+
+                    quantity = quantity > 0 ? quantity : 0
+
+                    var producttotal = parseFloat(quantity25) + parseFloat(quantity5)+ parseFloat(quantitythussi)
+                    producttotal = producttotal > 0 ? producttotal : 0
+
+                    var amount = $(this).find('.input-amount').val()
+                    amount = amount > 0 ? amount : 0
+
+                    var total = parseFloat(amount) * parseFloat(quantity)
+                    total = total > 0 ? total : 0
+
+                    var deposit = $(this).find('.input-deposit').val()
+                    deposit = deposit > 0 ? deposit : 0
+
+
+                    var Balance = (parseInt(total) - parseInt(deposit))
+                    Balance = Balance > 0 ? Balance : 0
+
+                    console.log(quantity25,quantity5,producttotal,quantity,amount,total,deposit,Balance)
+
+
+
+                    $(this).find('.balance').text(parseFloat(Balance).toLocaleString('en-US'))
+
+                    $(this).find('.product_total').text(parseFloat(producttotal).toLocaleString('en-US'))
+
+                    $(this).find('.product_price').text(parseFloat(total).toLocaleString('en-US'))
+                    gtotal += parseFloat(total)
+                    })
+
+                    $('#total').text(parseFloat(gtotal).toLocaleString('en-US'))
+$('[name="total"]').val(gtotal)
+    }
+
+
+    $(function() {
+        $('#cid').select2({
+            placeholder: 'Please Select customer here',
+            width: "100%"
+        })
+        $('#sid').select2({
+            placeholder: 'Please Select Site here',
+            width: "100%"
+        })
+         $('#helper').select2({
+            placeholder: 'Please Select Helper here',
+            width: "100%"
+        })
+         $('#driver').select2({
+            placeholder: 'Please Select driver here',
+            width: "100%"
+        })
+         $('#tractor').select2({
+            placeholder: 'Please Select tractor here',
+            width: "100%"
+        })
+        $('#add_to_list').click(function() {
+            cid = $('#cid').val()
+            if (cid == '' || cid == null) {
+                return false;
+            }
+            sid = $('#sid').val()
+            if (sid == '' || sid == null) {
+                return false;
+            }
+            start_loader()
+            $.ajax({
+                url: '{% url "get-product" %}/' + cid + '/'+ sid,
+                method: "GET",
+                dataType: 'json',
+                error: err => {
+                    alert('An error occured while fetching product data')
+                    end_loader()
+                },
+                success: function(resp) {
+                    if (resp.status == 'success') {
+                        var data = resp.data
+                        if ($('#customer-tbl tbody tr[data-id="' + data.id + '"]').length > 0) {
+                            alert("Customer Already on th list")
+                        } else {
+                            var tr = $($('noscript#prod-item-clone').html()).clone()
+                            tr.attr('data-id', data.id)
+                            tr.find('input[name="cid[]"]').val(data.id)
+                            tr.find('.customer_name').text(data.customer)
+                            tr.attr('data-sid', data.sid)
+                            tr.find('input[name="sid[]"]').val(data.sid)
+                            tr.find('.site_name').text(data.site)
+
+
+                            tr.find('.product_price').text(parseFloat(data.price).toLocaleString('en-US'))
+                            tr.find('.product_total').text(parseFloat(data.price).toLocaleString('en-US'))
+                            $('#customer-tbl tbody').append(tr)
+
+                            tr.find('[name="hole25[]"]').attr('name', "hole25[" + data.id + "]").on('change input', function(e) {
+                                calc()
+                            })
+                            tr.find('[name="hole5[]"]').attr('name', "hole5[" + data.id + "]").on('change input', function(e) {
+                                calc()
+                            })
+                            tr.find('[name="thussi[]"]').attr('name', "thussi[" + data.id + "]").on('change input', function(e) {
+                                calc()
+                            })
+                              tr.find('[name="amount[]"]').attr('name', "amount[" + data.id + "]").on('change input', function(e) {
+                                calc()
+                            })
+                            tr.find('[name="deposit[]"]').attr('name', "deposit[" + data.id + "]").on('change input', function(e) {
+                                calc()
+                            })
+                            tr.find('[name="balance[]"]').attr('name', "balance[" + data.id + "]").on('change input', function(e) {
+                                calc()
+                            })
+                            calc()
+
+
+                            tr.find('[name="hole25[]"]').attr('name', "hole25[" + data.id + "]")
+                            tr.find('[name="hole5[]"]').attr('name', "hole5[" + data.id + "]")
+                            tr.find('[name="thussi[]"]').attr('name', "thussi[" + data.id + "]")
+                            tr.find('[name="amount[]"]').attr('name', "amount[" + data.id + "]")
+                            tr.find('[name="deposit[]"]').attr('name', "deposit[" + data.id + "]")
+                            tr.find('[name="balance[]"]').attr('name', "balance[" + data.id + "]")
+
+                            tr.find('.rem-item').click(function(){
+                                tr.remove()
+                                calc()
+                            })
+
+                        }
+                        $('#cid').val('').trigger('change')
+                    } else if (!!resp.msg) {
+                        alert(resp.msg)
+                    }
+                    end_loader()
+                }
+            })
+        })
+
+        $('#sale-form').submit(function(e) {
+            e.preventDefault();
+            var _this = $(this)
+            $('.err-msg').remove();
+            var el = $('<div>')
+            el.addClass("alert alert-danger err-msg")
+            el.hide()
+            if (_this[0].checkValidity() == false) {
+                _this[0].reportValidity();
+                return false;
+            }
+            start_loader();
+            $.ajax({
+                url: "{% url 'save-sales' %}",
+                data: new FormData($(this)[0]),
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST',
+                dataType: 'json',
+                error: err => {
+                    console.log(err)
+                    alert("An error occured ", 'error');
+                    end_loader();
+                },
+                success: function(resp) {
+                    if (typeof resp == 'object' && resp.status == 'success') {
+                        el.removeClass("alert alert-danger err-msg ")
+                        location.reload()
+                    } else if (resp.status == 'failed' && !!resp.msg) {
+                        el.html(resp.msg)
+                    } else {
+                        el.text("An error occured ", 'error');
+                        end_loader();
+                        console.err(resp)
+                    }
+                    _this.prepend(el)
+                    el.show('slow')
+                    $("html, body, .modal ").scrollTop(0);
+                    end_loader()
+                }
+            })
+        })
+    })
+</script>
+
+{% endblock ScriptBlock %}
+
+
+
+
+
+
+
+<!--    function calc ()-->
+<!--{-->
+<!--    // Get the input values-->
+<!--    a = Number(document.getElementById('price').value);-->
+<!--    b = Number(document.getElementById('hole25').value);-->
+<!--    c = Number(document.getElementById('hole5').value);-->
+<!--    d = Number(document.getElementById('deposit').value);-->
+
+<!--    // Do the multiplication-->
+<!--    ResultOne = a * b;-->
+
+<!--    ResultTwo = (a * 2) * c ;-->
+
+<!--    // Do the addition-->
+
+<!--    FinalResult = ResultOne + ResultTwo;-->
+
+<!--    // Set the value of the total-->
+<!--    document.getElementById('total').value=FinalResult;-->
+
+
+<!--    paybalance = FinalResult - d ;-->
+
+<!--    document.getElementById('balance').value=paybalance;-->
+
+<!--}-->
+
+
+
+

@@ -1,0 +1,64 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Records Between two Dates</title>
+</head>
+<body>
+<center>
+    <div  style=" width=100%">
+        <tr style="white-space: pre;display: block;color:red;">
+            <td  >
+                   <h1 align="center" >
+                        Jaulkar Explosive and Company
+                        Railway Station Narkhed - 441304
+                   </h1>
+            </td>
+        </tr>
+
+    </div>
+    <div style="margin:auto; width:50%; border:1px solid black; padding: 10px;">
+    <form method="post" action="/datewisecustomerinvoice/">
+        {% csrf_token %}
+        <input type="hidden" name="custid" value="{{ customerid }}">
+        From:<input type="date" name="fromdate" required>
+        To:  <input type="date" name="todate" required>
+              <hr>
+<!--        <div class="from-group">-->
+<!--             <label for="invoice" class="control-label">Choose Invoice </label>-->
+<!--            <select name="invoice" id="invoice" class="form-select rounded-0">-->
+<!--                {% for custinvoice in custinvoices %}-->
+<!--                <option value="{{custinvoice.invoice_id}}" >{{custinvoice.invoice_id}}</option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+<!--        </div> <hr>-->
+        <hr>
+        <input type="submit" value="search">
+<!--    <table border="1">-->
+<!--        <tr>-->
+<!--            <th>Driver</th>-->
+<!--            <th>Total ED</th>-->
+<!--            <th>Total GL</th>-->
+<!--            <th>Total NO NEL</th>-->
+<!--            <th>Total Diesel</th>-->
+<!--            <th>Date</th>-->
+<!--        </tr>-->
+<!--        {% for result in data %}-->
+<!--        <tr>-->
+<!--            <td>{{result.driver_id}}</td>-->
+<!--            <td>{{result.ed}}</td>-->
+<!--            <td>{{result.gl}}</td>-->
+<!--            <td>{{result.nonel}}</td>-->
+<!--            <td>{{result.diesel}}</td>-->
+<!--            <td>{{result.date_created}}</td>-->
+<!--        </tr>-->
+
+<!--        {% endfor %}-->
+
+<!--    </table>-->
+    </form>
+        </div>
+</center>
+</body>
+</html>
+

@@ -1,0 +1,93 @@
+<html>
+    <head>
+            <style>
+            table, td, th {
+              border: 1px solid black;
+            }
+
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            td {
+              text-align: center;
+            }
+            </style>
+    </head>
+    <body>
+<form>
+    <table cellpadding="0" cellspacing="" width="100%">
+        <tr style="white-space: pre;display: block;color:red;">
+            <td colspan="2" >
+                   <h1>
+                        Jaulkar Explosive and Company
+                        Railway Station Narkhed - 441304
+                   </h1>
+            </td>
+        </tr>
+
+    </table>
+    </br>
+    <table class="table table-bordered table-hover table-warning" >
+        <colgroup>
+            <col width="10%">
+            <col width="45%">
+            <col width="45%">
+
+        </colgroup>
+        <thead>
+            <tr class="bg-gradient bg-primary bg-opacity-50 text-light">
+                <th class="px-4 py-4 text-center" style="font-size:20px" align="center">Sr.No.</th>
+                <th class="px-4 py-4 text-center" style="font-size:20px" align="center">Driver</th>
+                <th class="px-4 py-4 text-center" style="font-size:20px" align="center">Phone No.</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+            {% for driver in drivers %}
+            <tr  style="white-space: pre;display: block;color:black;">
+                <td width="10%" style="border: 1px solid black; font-size:10px; padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{ forloop.counter }}</h2></td>
+                <td width="45%" style="border: 1px solid black; font-size:10px; padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{driver.1}}</h2></td>
+                <td width="45%" style="border: 1px solid black; font-size:10px; padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{driver.2}}</h2></td>
+
+            </tr>
+            {% endfor %}
+
+
+
+
+
+
+
+<!--            <thead>-->
+<!--                <tr  align="center">-->
+<!--                    <th align="center" style="color:black;font-size:18px; ">Sr.No.</th>-->
+<!--                    <th align="center" style="color:black;font-size:18px;">Driver</th>-->
+<!--                    <th align="center" style="color:black;font-size:18px;">Phone No.</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+
+<!--                {% for driver in drivers %}-->
+<!--                <tr>-->
+<!--                    <td class="align-middle align-text-bottom"   style="color:black;font-size:18px;">{{ forloop.counter }}</td>-->
+<!--                    <td class="align-middle align-text-bottom"  style="color:black;font-size:18px;" >{{ driver.1 }}</td>-->
+<!--                    <td class="align-middle align-text-bottom"  style="color:black;font-size:18px;">{{ driver.2 }}</td>-->
+<!--                </tr>-->
+<!--                {% endfor %}-->
+<!--            </tbody>-->
+
+
+
+
+
+
+
+
+        </table>
+
+    </form>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+    <head>
+            <style>
+            table, td, th {
+              border: 1px solid black;
+            }
+
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            td {
+              text-align: center;
+            }
+            </style>
+    </head>
+    <body>
+<form>
+    <table cellpadding="0" cellspacing="" width="100%">
+        <tr style="white-space: pre;display: block;color:red;">
+            <td colspan="2" >
+                   <h1>
+                        Jaulkar Explosive and Company
+                        Railway Station Narkhed - 441304
+                   </h1>
+            </td>
+        </tr>
+
+    </table>
+    </form>
+                <h2  align="center" style="color:black;font-size:20px;"><u>Tractor Invoice</u></h2>
+            </body>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <table border="1" id="driver-list">
+
+                    <thead>
+                        <tr class="bg-gradient bg-primary bg-opacity-50 text-light">
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px; ">Sr.No.</th>
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px;">Tractor</th>
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px;">Hole 2.5</th>
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px;">Hole 5</th>
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px;">Total Holes</th>
+                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;padding-top: 8px;">Diesel</th>
+<!--                            <th class="px-3 py-3 text-center" style="color:black;font-size:18px;">Phone No.</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for total in totals %}
+                        <tr>
+                            <td  align="center" style="color:black;font-size:18px; padding-top: 8px;">{{ forloop.counter }}</td>
+                            <td  align="center" style="color:black;font-size:18px;padding-top: 8px;" >{{ total.0 }}</td>
+                            <td  align="center" style="color:black;font-size:18px;padding-top: 8px;" >{{ total.1 }}</td>
+                            <td  align="center" style="color:black;font-size:18px;padding-top: 8px;" >{{ total.2 }}</td>
+                            <td  align="center" style="color:black;font-size:18px;padding-top: 8px;" >{{ total.3 }}</td>
+                            <td  align="center" style="color:black;font-size:18px;padding-top: 8px;" >{{ total.4 }}</td>
+<!--                            <td  align="center" style="color:black;font-size:18px;">{{ driver.2 }}</td>-->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

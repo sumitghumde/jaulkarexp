@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/ims_django_new_december/Sumit Sir 02-12-2022/ayush latest ims(01.12.22)/ayush latest/ims_django/db.sqlite3" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="3696"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,14:mainimsApp_invoice"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="auth_group" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="43"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="imsApp_invoice" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="91"/><column index="3" value="45"/><column index="4" value="60"/><column index="5" value="40"/><column index="6" value="40"/><column index="7" value="43"/><column index="8" value="97"/><column index="10" value="66"/><column index="11" value="68"/><column index="12" value="74"/><column index="13" value="40"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="imsApp_invoice_item" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="51"/><column index="3" value="43"/><column index="4" value="46"/><column index="5" value="60"/><column index="6" value="60"/><column index="7" value="63"/><column index="8" value="60"/><column index="9" value="88"/><column index="10" value="72"/><column index="11" value="51"/><column index="12" value="47"/></column_widths><filter_values><column index="9" value="5"/><column index="11" value="2"/></filter_values><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">select sum((invitem.thussi+invitem.hole25+(invitem.hole5 *2))*invitem.price) as total
+    From imsApp_invoice_item as invitem where  invitem.customer_id =
+    5 and invitem.site_id = 2 ;
+	
+	SELECT sum(deposit) from imsApp_receiptinvoice as invitem
+    where invitem.customer_id   = 5 and invitem.site_id = 2 ;
+
+	
+	SELECT strftime('%d/%m/%Y',DATE(inv.date_created)) as date_created,inv.id as Invoice_Id,cust.name,sum(invitem.hole25) as hole25,sum(invitem.hole5) as hole5,invitem.price, sum(invitem.total) as xtotal, invitem.quantity,cust.id as custid,site.sitename,site.id,cust.id,sum(invitem.thussi) as thussi
+    FROM imsApp_invoice as inv
+  JOIN imsApp_invoice_item as invitem
+  ON inv.id = invitem.invoice_id
+  JOIN imsApp_customer as cust
+  ON cust.id = invitem.customer_id
+  JOIN imsApp_site as site
+  ON site.id = invitem.site_id
+  where cust.id  = 5 GROUP BY invitem.site_id ;
+
+  
+  
+  
+  select sum(invitem.total) as total
+    From imsApp_invoice_item as invitem where  invitem.customer_id =
+    5 and invitem.site_id = 2 ;
+	
+	
+	 SELECT drv.name, sum(gl) as gelleting ,sum(ed) as Detonetor,sum(nonel) as nonel, sum(diesel) as diesel , sum(df) as df FROM imsApp_invoice as inv JOIN imsApp_driver as drv on inv.driver_id= drv.id WHERE driver_id =  None and inv.date_created between '2022-12-01' and '2022-12-02' ;
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

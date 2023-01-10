@@ -1,0 +1,117 @@
+<html>
+    <head>
+            <style>
+            table, td, th {
+              border: 1px solid black;
+            }
+
+            table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            td {
+              text-align: center;
+            }
+            </style>
+    </head>
+    <body>
+<form>
+
+    <table cellpadding="0" cellspacing="" width="100%">
+        <tr>
+            <td colspan="2">
+                </br>
+                <label style="white-space: pre;margin:3;padding:0; text-align: center; align : left;
+    font-size: 2.5em;
+    color:red;"> Jaulkar Explosive and Company</label></br>
+              </br>  <label style="white-space: pre;margin:3;padding:0; text-align: center; align : left;
+    font-size: 1.5em;
+    color:black;">         Railway Station Narkhed - 441304</label>
+
+            </td>
+        </tr>
+
+
+        <tr style='white-space: pre;color:red;font-family:"verdana", Courier, monospace; font-size:100%;'>
+            <td >
+                <h3 style="margin:0;padding:0; text-align: left;
+    font-size: 1.5em;
+    color:black;">
+
+                     customer   :- {{customername}}
+
+                </h3>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+
+
+    </table>
+
+   </br>
+    <table class="table table-bordered table-hover table-warning" id="invoice-list">
+        <colgroup>
+            <col width="5%">
+            <col width="7%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="8%">
+
+        </colgroup>
+        <thead>
+            <tr class="bg-gradient bg-primary bg-opacity-50 text-light">
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Sr.No.</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Invoice Id</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Date</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Site</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Hole 2.5</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Hole 5</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Price</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Total</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Deposite</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Balance</th>
+                <th style="border: 1px solid black; padding-top:2px; padding-bottom:2px; padding :2px;" class="px-2 py-2 text-center" align="center">Quantity</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr  style="white-space: pre;display: block;color:black;">
+                <td width="5%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{ forloop.counter }}</h2></td>
+                <td width="10%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.1}}</h2></td>
+                <td width="12%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.0}}</h2></td>
+                <td width="9%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.6}}</h2></td>
+                <td width="9%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.3}}</h2></td>
+                <td width="9%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.4}}</h2></td>
+                <td width="10%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.5}}</h2></td>
+                <td width="10%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.7}}</h2></td>
+                <td width="10%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.8}}</h2></td>
+                <td width="10%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.9}}</h2></td>
+                <td width="6%" style="border: 1px solid black;padding-top: 2px;padding-bottom: 2px;padding : 2px;" class="px-2 py-2 text-center" align="center"><h2>{{customer.10}}</h2></td>
+
+            </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="9"></td>
+            </tr>
+        <tr style="color:black;">
+            <td width="33%" colspan="3" style="border: 1px solid yellow;padding-top: 3px;padding-bottom: 3px;padding : 3px; font-size:15px" class="px-2 py-2 text-center"><b>Total Amount :-  {{ totamount }} </b></td>
+            <td width="33%" colspan="4" style="border: 1px solid yellow;padding-top: 3px;padding-bottom: 3px;padding : 3px; font-size:15px" class="px-2 py-2 text-center" ><b>Total Deposite :-  {{ totdeposit }}</b></td>
+            <td width="33%" colspan="4" style="border: 1px solid yellow;padding-top: 3px;padding-bottom: 3px;padding : 3px; font-size:15px" class="px-2 py-2 text-center" ><b> Total Balance :-  {{ totbalance }}</b></td>
+        </tr>
+
+        </tbody>
+    </table>
+</form>
+    </body>
+</html>
